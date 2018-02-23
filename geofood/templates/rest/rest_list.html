@@ -1,0 +1,11 @@
+{% extends 'rest/base.html' %}
+
+{% block rest %}
+
+{% for post in posts %}
+    <div>
+        <h3><a href="{% url 'rest:rest_detail' pk=post.pk %}">{{ post }}</a></h3>
+    </div>
+{% endfor %}
+
+{% endblock %}

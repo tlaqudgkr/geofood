@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body onload="showPosition()">
+    <div>
+        <div>
+            {% block title %}
+            {% endblock %}
+        </div>
+    </div>
+    <h1><a href="/">나는 알고 너는 모르는 맛집[홈으로]</a></h1>
+    <!--<p><a href="/">Home 바로가기</a></p>-->
+    <p><a href="{% url 'rest:rest_new' %}">새글쓰기</a></p>
+    <p><a href="{% url 'rest:rest_list' %}">전체보기</a></p>
+    {% for food in food %}
+    <a href="{% url 'rest:rest_list' %}?category={{ food }}">{{ food }}</a>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    <h3>{{ user.username }} 님 안녕하세요.</h3>
+    <nav>
+        <a href="{% url 'password_change' %}">비밀번호 변경</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <p><a href="{% url 'login' %}">Login</a></p>
+        <p><a href="{% url 'register' %}">회원가입</a></p>
+
+    </nav>
+    {% endif %}
+    {% block register %}
+    {% endblock %}
+
+    {% block home %}
+    {% endblock %}
+
+    {% block sub-content %}
+    {% endblock%}
+    </body>
+</html>

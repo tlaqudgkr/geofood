@@ -1,0 +1,14 @@
+{% extends 'rest/base.html' %}
+
+{% block rest %}
+<div>
+    <h1>새글쓰기</h1>
+    <form action="" method="POST">
+	    {% csrf_token %}
+		{{ postform.as_p }}
+	    {{ form.as_p }}
+	    <button type="submit">저장</button>
+	</form>
+</div>
+
+{% endblock %}
